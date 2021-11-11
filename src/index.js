@@ -1,17 +1,29 @@
-import * as _ from "lodash";
-import * as PNotify from "@pnotify/core";
-import * as PNotifyMobile from "@pnotify/mobile";
-import "@pnotify/core/dist/BrightTheme.css";
+// import * as _ from "lodash";
+// import * as PNotify from "@pnotify/core";
+// import * as PNotifyMobile from "@pnotify/mobile";
+// import "@pnotify/core/dist/BrightTheme.css";
 import countryCard from './templates/country-cards.hbs';
-// import countryList from './templates/hbs/country-list.hbs';
-import './styles.css';
-import fetchCountries from './js/fetchCountries';
+// // import countryList from './templates/hbs/country-list.hbs';
+// import './styles.css';
+// import fetchCountries from './js/fetchCountries';
 
-  const refs = {
-    searchInput: document.querySelector('.js-input'),
-    articlesContainer: document.querySelector('.js-articles-container'),
-  };
-  fetchCountries();
+//   const refs = {
+//     searchInput: document.querySelector('.js-input'),
+//     articlesContainer: document.querySelector('.js-articles-container'),
+//   };
+
+fetch('https://restcountries.com/v3.1/name/peru')    
+.then(response => {return response.json()})
+.then(data => {
+console.log(data);
+// const markup = countryCard(country);
+// console.log(markup);
+});
+// .finally(inputText.reset);
+
+
+
+  // fetchCountries();
 
 
 
