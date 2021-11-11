@@ -1,25 +1,42 @@
-// import * as _ from "lodash";
-// import * as PNotify from "@pnotify/core";
-// import * as PNotifyMobile from "@pnotify/mobile";
-// import "@pnotify/core/dist/BrightTheme.css";
-import countryCard from './templates/country-cards.hbs';
+import * as _ from "lodash";
+import * as PNotify from "@pnotify/core";
+import * as PNotifyMobile from "@pnotify/mobile";
+import "@pnotify/core/dist/BrightTheme.css";
+import countryCard from './templates/hbs/country-card.hbs';
 // // import countryList from './templates/hbs/country-list.hbs';
-// import './styles.css';
 // import fetchCountries from './js/fetchCountries';
 
-//   const refs = {
-//     searchInput: document.querySelector('.js-input'),
-//     articlesContainer: document.querySelector('.js-articles-container'),
-//   };
+  const refs = {
+    searchInput: document.querySelector('.js-input'),
+    articlesContainer: document.querySelector('.js-articles-container'),
+  };
+  refs.searchInput.addEventListener('input', _.debounce(onSearch,500))
+  
+  
 
-fetch('https://restcountries.com/v3.1/name/peru')    
-.then(response => {return response.json()})
-.then(data => {
-console.log(data);
-// const markup = countryCard(country);
-// console.log(markup);
-});
-// .finally(inputText.reset);
+  function onSearch (e){
+    e.preventDefault();
+    // const input = document.querySelector("input");
+    const form=document.querySelector("input")
+    // console.log(input.value)
+    const searchQuery = e.target.value;
+
+    fetchCountry(searchQuery).then(renderCoutryCard).catch(console.error()).finally(()=>form.reset);
+
+  };
+
+  function fetchCountry (countryId){
+    return fetch('https://restcountries.com/v2/name/${countryId}')    
+    .then(response => {
+      return response.json();
+    })
+  }
+    
+    function renderCoutryCard (country){
+    const markup = countryCard(country[0]);
+    refs.articlesContainer.insertAdjacentHTML("beforeend", markup);
+    }
+  
 
 
 
