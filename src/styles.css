@@ -4,6 +4,7 @@
   box-sizing: border-box;
 }
 .container{
+
     text-align: center;
     color: blueviolet;
     font-size: 36px;
@@ -15,3 +16,10 @@
     border-color: red
 
 }
+body {
+    background-image: url(./images/sky.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: rebeccapurple;
+    font-size: 36px;
+  }
